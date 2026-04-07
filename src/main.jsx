@@ -5,9 +5,12 @@ import { Toaster } from 'react-hot-toast'
 import App from './App'
 import './index.css'
 
+// Use /broadband-crm/ basename for GitHub Pages, / for Vercel
+const basename = import.meta.env.VITE_BASENAME || '/'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/broadband-crm">
+    <BrowserRouter basename={basename}>
       <App />
       <Toaster
         position="top-right"
