@@ -1,9 +1,11 @@
 import { useEffect, useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import Modal from '../components/Modal'
 import { Plus, Search, Edit2, Eye, Trash2 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { format, parseISO } from 'date-fns'
+import { isDueCustomer } from '../lib/duePayments'
 
 const PLANS = ['10 Mbps', '25 Mbps', '50 Mbps', '100 Mbps', '200 Mbps', '500 Mbps', '1 Gbps']
 
@@ -158,7 +160,26 @@ export default function Customers() {
                         {c.name?.[0]?.toUpperCase()}
                       </div>
                       <div>
-                        <div style={{ fontWeight: 600, color: '#e2e8f0' }}>{c.name}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                          <div style={{ fontWeight: 600, color: '#e2e8f0' }}>{c.name}</div>
+                          {isDueCustomer(c) && (
+                            <Link
+                              to="/due-payments"
+                              style={{
+                                fontSize: '0.72rem',
+                                fontWeight: 700,
+                                color: '#06b6d4',
+                                textDecoration: 'none',
+                                border: '1px solid rgba(6,182,212,0.35)',
+                                borderRadius: 999,
+                                padding: '0.16rem 0.5rem',
+                                background: 'rgba(6,182,212,0.08)',
+                              }}
+                            >
+                              Due
+                            </Link>
+                          )}
+                        </div>
                         <div style={{ fontSize: '0.78rem', color: '#64748b' }}>{c.email || '—'}</div>
                       </div>
                     </div>

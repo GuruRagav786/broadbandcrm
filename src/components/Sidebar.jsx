@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import {
-  LayoutDashboard, Users, FileText, Ticket, Gift, Wifi
+  LayoutDashboard, Users, FileText, Ticket, Gift, Wifi, AlertCircle
 } from 'lucide-react'
 
 const nav = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/customers', icon: Users, label: 'Customers' },
+  { to: '/due-payments', icon: AlertCircle, label: 'Due Payments' },
   { to: '/invoices', icon: FileText, label: 'Invoices & Payments' },
   { to: '/tickets', icon: Ticket, label: 'Service Tickets' },
   { to: '/wishes', icon: Gift, label: 'Wishes' },
